@@ -3,6 +3,6 @@ discord.py
 
 Make an .env file with:
 
-# .env
+.env
 DISCORD_TOKEN=
 DISCORD_GUILD=
