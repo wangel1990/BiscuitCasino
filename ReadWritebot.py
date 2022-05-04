@@ -1,3 +1,4 @@
+from email import message
 import enum
 import discord
 from discord.ext import commands
@@ -23,11 +24,19 @@ def data_base_manager():
 
     elif file_existence == True:
         print("CSV exists")
-        open('data.csv', mode='r') as f:
-        reader= csv.reader(f, delimiter= "/t")
-        for n, line in enumerate(reader):
-            mydict = {rows[0]:rows[1] for rows in reader}
-            
+        
+        with open('data.csv', mode='r') as infile:
+            reader= csv.reader(infile)
+            mydict = dict((rows[0],rows[0]) for rows in reader)
+            for n in list(mydict):
+                list[n]= mydict.items()
+                for n in list.size():
+                    print (list[n])
+            #print(mydict.keys())
+            for n in mydict:
+                if n in mydict:
+                    print (n)
+
 
 
 
@@ -44,6 +53,9 @@ async def   on_message(message):
     else:
         current_user_id= message.author.id
         await message.channel.send('Your uid is '  + str( current_user_id))
+        if current_user_id in mydict[{}]:
+            await message.channel.send('current user is registered.')
+            
 
         emojis= ['0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟']
         for emoji in emojis:
