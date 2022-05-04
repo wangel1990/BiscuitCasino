@@ -1,3 +1,4 @@
+import enum
 import discord
 from discord.ext import commands
 
@@ -19,9 +20,14 @@ def data_base_manager():
     if file_existence == False:
         f = open('data.csv', 'w')
         print("CSV is created")
+
     elif file_existence == True:
         print("CSV exists")
-        CSV= open("data.csv","a", newline="")
+        open('data.csv', mode='r') as f:
+        reader= csv.reader(f, delimiter= "/t")
+        for n, line in enumerate(reader):
+            mydict = {rows[0]:rows[1] for rows in reader}
+            
 
 
 
@@ -36,15 +42,14 @@ async def   on_message(message):
     if message.author == client.user:
         return
     else:
-        await message.channel.send('Your uid is '  + str( message.author.id))
-    
+        current_user_id= message.author.id
+        await message.channel.send('Your uid is '  + str( current_user_id))
 
-    if '!claim' in message.content.lower():
-        csv
+        emojis= ['0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟']
+        for emoji in emojis:
+            await message.add_reaction(emoji)
         
-
-        
-        
-
+# if '!claim' in message.content.lower():
+#    for n in 30:
 
 client.run(TOKEN)
